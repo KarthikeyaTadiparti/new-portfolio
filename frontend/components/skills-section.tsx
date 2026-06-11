@@ -53,11 +53,36 @@ export function SkillsSection() {
   ]
 
   const categories = [
-    { name: "Languages", icon: <Code className="size-4 text-emerald-500" /> },
-    { name: "Frontend", icon: <Terminal className="size-4 text-sky-500" /> },
-    { name: "Backend", icon: <Cpu className="size-4 text-indigo-500" /> },
-    { name: "Databases", icon: <Database className="size-4 text-amber-500" /> },
-    { name: "Tools", icon: <Wrench className="size-4 text-purple-500" /> }
+    { 
+      name: "Languages", 
+      icon: <Code className="size-4 text-emerald-500" />,
+      borderClass: "border-t-2 border-t-emerald-500/80 dark:border-t-emerald-500/50",
+      dotClass: "bg-emerald-500"
+    },
+    { 
+      name: "Frontend", 
+      icon: <Terminal className="size-4 text-sky-500" />,
+      borderClass: "border-t-2 border-t-sky-500/80 dark:border-t-sky-500/50",
+      dotClass: "bg-sky-500"
+    },
+    { 
+      name: "Backend", 
+      icon: <Cpu className="size-4 text-indigo-500" />,
+      borderClass: "border-t-2 border-t-indigo-500/80 dark:border-t-indigo-500/50",
+      dotClass: "bg-indigo-500"
+    },
+    { 
+      name: "Databases", 
+      icon: <Database className="size-4 text-amber-500" />,
+      borderClass: "border-t-2 border-t-amber-500/80 dark:border-t-amber-500/50",
+      dotClass: "bg-amber-500"
+    },
+    { 
+      name: "Tools", 
+      icon: <Wrench className="size-4 text-purple-500" />,
+      borderClass: "border-t-2 border-t-purple-500/80 dark:border-t-purple-500/50",
+      dotClass: "bg-purple-500"
+    }
   ] as const
 
   return (
@@ -87,7 +112,7 @@ export function SkillsSection() {
           return (
             <div 
               key={cat.name} 
-              className="border border-border bg-card/40 hover:bg-card/60 rounded-xl p-4 flex flex-col space-y-4 transition-all duration-300 shadow-sm"
+              className={`border border-border bg-zinc-50/60 dark:bg-card/20 rounded-xl p-4 flex flex-col space-y-4 shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 ${cat.borderClass}`}
             >
               {/* Category Header */}
               <div className="flex items-center gap-2 border-b border-border/80 pb-2">
@@ -103,9 +128,9 @@ export function SkillsSection() {
                   return (
                     <div
                       key={skill.id}
-                      className="w-full px-2.5 py-1.5 rounded-md border border-border/80 bg-card/60 text-foreground text-xs flex items-center gap-2"
+                      className="w-full px-2.5 py-1.5 rounded-md border border-border/70 bg-white dark:bg-zinc-900/50 text-foreground text-xs flex items-center gap-2 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-white dark:hover:bg-zinc-900/80 transition-all duration-200"
                     >
-                      <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                      <span className={`size-1.5 rounded-full shrink-0 ${cat.dotClass}`} />
                       <span className="font-semibold text-zinc-900 dark:text-zinc-100">
                         {skill.name}
                       </span>
