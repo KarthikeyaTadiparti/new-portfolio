@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion } from "motion/react"
 import { 
   GithubLogo, 
   ArrowSquareOut,
-  Play,
-  Pause,
-  ArrowRight,
-  Lightning,
-  Sparkle,
-  ArrowsLeftRight,
-  CheckCircle
+  CheckCircle,
+  Cpu,
+  Sparkle
 } from "@phosphor-icons/react"
 import { Button } from "@/components/ui/button"
 
@@ -92,15 +87,15 @@ export function ProjectsSection() {
     <section id="projects" className="py-20 px-6 max-w-7xl mx-auto w-full border-b border-border bg-background relative">
       {/* Eyebrow and Section Header */}
       <div className="flex flex-col space-y-4 mb-16 text-left max-w-2xl font-mono">
-        <div className="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full border border-border bg-muted/50 text-xs uppercase tracking-wider text-muted-foreground">
+        {/* <div className="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full border border-border bg-muted/50 text-xs uppercase tracking-wider text-muted-foreground">
           Case Studies
-        </div>
+        </div> */}
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-          Featured Engineering Projects
+          Projects
         </h2>
-        <p className="text-muted-foreground text-base leading-relaxed">
+        {/* <p className="text-muted-foreground text-base leading-relaxed">
           Explore three production-grade products designed to automate workflows, simplify data extraction, and increase operational efficiency.
-        </p>
+        </p> */}
       </div>
 
       {/* Case Studies Stack */}
@@ -174,7 +169,7 @@ export function ProjectsSection() {
                 </span>
                 <ul className="flex flex-col gap-2 text-sm">
                   {project.impact.map((imp, index) => (
-                    <li key={index} className="flex items-start gap-2 text-zinc-300">
+                    <li key={index} className="flex items-start gap-2 text-zinc-700 dark:text-zinc-300">
                       <CheckCircle className="size-4 text-emerald-500 shrink-0 mt-0.5" />
                       <span>{imp}</span>
                     </li>
@@ -225,108 +220,58 @@ export function ProjectsSection() {
 
 // Smart Recruiter Widget
 function SmartRecruiterWidget() {
-  const [isPlaying, setIsPlaying] = useState<boolean>(true)
-  const [playbackTime, setPlaybackTime] = useState<number>(4)
-  const [sentiment, setSentiment] = useState<string>("Confident")
-  const [transcription, setTranscription] = useState<string>("I set up Redis caching...")
-  const timerRef = React.useRef<any>(null)
-
-  // Simulation loop for candidate audio screener
-  useEffect(() => {
-    if (!isPlaying) return
-
-    timerRef.current = setInterval(() => {
-      setPlaybackTime((t) => {
-        const next = t >= 30 ? 0 : t + 1
-        
-        // Dynamic logs matching audio time
-        if (next < 8) {
-          setTranscription("\"I set up Redis caching key-values...\"")
-          setSentiment("Confident")
-        } else if (next < 16) {
-          setTranscription("\"...to scale backend session writing speeds...\"")
-          setSentiment("Analytical")
-        } else if (next < 24) {
-          setTranscription("\"...and reduce Postgres read latency load.\"")
-          setSentiment("System Architect")
-        } else {
-          setTranscription("\"Screening parameters scored by AI pipeline.\"")
-          setSentiment("Objective")
-        }
-        
-        return next
-      })
-    }, 1000)
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current)
-    }
-  }, [isPlaying])
-
   return (
-    <div className="w-full border border-border bg-card shadow-lg rounded-lg overflow-hidden font-mono text-xs p-4 flex flex-col gap-4">
+    <div className="w-full border border-border bg-card shadow-lg rounded-lg overflow-hidden font-mono text-xs p-4 flex flex-col gap-3">
       {/* Title block */}
-      <div className="flex items-center justify-between border-b border-border pb-3">
+      <div className="flex items-center justify-between border-b border-border pb-2.5">
         <div className="flex items-center gap-2">
-          <div className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-semibold text-foreground text-[10px]">recruiter_voice_stream.bin</span>
+          <Cpu className="size-4 text-emerald-500" />
+          <span className="font-semibold text-foreground text-[10px]">AI SCREENING REPORT</span>
         </div>
-        <span className="text-[9px] text-zinc-500">Node Audio Loader v2</span>
+        <span className="text-[9px] text-zinc-500">Candidate #4021</span>
       </div>
 
-      {/* Waveform Player */}
-      <div className="bg-black/40 border border-border/60 rounded p-3 flex flex-col gap-3">
-        <div className="flex items-center gap-3">
-          <button 
-            onClick={() => setIsPlaying(!isPlaying)}
-            className="size-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center cursor-pointer hover:bg-primary/80 transition-colors"
-          >
-            {isPlaying ? <Pause className="size-3.5 fill-current" /> : <Play className="size-3.5 fill-current ml-0.5" />}
-          </button>
-          
-          <div className="flex-1 flex flex-col gap-1">
-            <div className="flex items-center justify-between text-[8px] text-muted-foreground">
-              <span>ACTIVE CAPTURE</span>
-              <span>00:{playbackTime < 10 ? `0${playbackTime}` : playbackTime} / 00:30</span>
-            </div>
-            {/* Waveform bars */}
-            <div className="h-6 flex items-end gap-[3px] py-1 select-none">
-              {Array.from({ length: 26 }).map((_, idx) => {
-                // Generate a pseudo-random wave height that changes dynamically if playing
-                const baseHeight = 20 + Math.sin(idx * 0.5) * 45 + Math.cos(idx * 0.9) * 25
-                const animHeight = isPlaying 
-                  ? Math.max(10, Math.min(95, baseHeight + Math.sin(playbackTime + idx) * 20))
-                  : baseHeight * 0.6
-                
-                return (
-                  <motion.div
-                    key={idx}
-                    animate={{ height: `${animHeight}%` }}
-                    transition={{ type: "spring", stiffness: 200, damping: 12 }}
-                    className={`flex-1 rounded-sm ${idx * 1.15 < playbackTime ? "bg-primary" : "bg-zinc-800"}`}
-                  />
-                )
-              })}
-            </div>
+      {/* Score Telemetry */}
+      <div className="space-y-3 bg-zinc-100 dark:bg-zinc-900/40 border border-border/60 rounded p-3 text-sm">
+        <div className="flex justify-between items-center text-xs">
+          <span className="text-muted-foreground">Candidate Name:</span>
+          <span className="text-foreground font-semibold">Alex Rivera</span>
+        </div>
+        <div className="space-y-1.5">
+          <div className="flex justify-between text-[11px] text-muted-foreground">
+            <span>Technical Score</span>
+            <span>92%</span>
+          </div>
+          <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+            <div className="bg-primary h-full w-[92%]" />
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          <div className="flex justify-between text-[11px] text-muted-foreground">
+            <span>Communication Score</span>
+            <span>85%</span>
+          </div>
+          <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+            <div className="bg-emerald-500 h-full w-[85%]" />
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          <div className="flex justify-between text-[11px] text-muted-foreground">
+            <span>AI Confidence Score</span>
+            <span>94%</span>
+          </div>
+          <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+            <div className="bg-amber-500 h-full w-[94%]" />
           </div>
         </div>
       </div>
 
-      {/* AI Inference Telemetry Box */}
-      <div className="grid grid-cols-2 gap-3 text-[9px] bg-muted/40 p-3 rounded border border-border/40">
-        <div className="space-y-1">
-          <span className="text-zinc-500 block">AI TRANSCRIBER</span>
-          <p className="text-foreground italic leading-normal truncate max-w-[140px] md:max-w-none">
-            {transcription}
-          </p>
-        </div>
-        <div className="space-y-1 border-l border-border/80 pl-3">
-          <span className="text-zinc-500 block">SENTIMENT SCORE</span>
-          <div className="flex items-center gap-1.5 mt-0.5">
-            <Lightning className="size-3 text-amber-500" />
-            <span className="text-foreground font-semibold uppercase">{sentiment}</span>
-          </div>
-        </div>
+      {/* AI Summary Readout */}
+      <div className="bg-muted/40 p-2.5 rounded border border-border/40 text-[10px] space-y-1">
+        <span className="text-zinc-500 block uppercase font-semibold text-[8px]">AI Evaluation Summary</span>
+        <p className="text-foreground leading-relaxed">
+          "Candidate explained Redis caching and Postgres indexing questions confidently. Highly recommended for the next round."
+        </p>
       </div>
     </div>
   )
@@ -334,115 +279,34 @@ function SmartRecruiterWidget() {
 
 // Legal Assistant Widget
 function LegalAssistantWidget() {
-  const [isProcessing, setIsProcessing] = useState<boolean>(false)
-  const [progress, setProgress] = useState<number>(0)
-  const [showSimplified, setShowSimplified] = useState<boolean>(false)
-
-  const triggerSimplification = () => {
-    if (isProcessing) return
-    setIsProcessing(true)
-    setProgress(0)
-    setShowSimplified(false)
-  }
-
-  useEffect(() => {
-    if (!isProcessing) return
-
-    const timer = setInterval(() => {
-      setProgress((p) => {
-        if (p >= 100) {
-          clearInterval(timer)
-          setIsProcessing(false)
-          setShowSimplified(true)
-          return 100
-        }
-        return p + 20
-      })
-    }, 300)
-
-    return () => clearInterval(timer)
-  }, [isProcessing])
-
   return (
-    <div className="w-full border border-border bg-card shadow-lg rounded-lg overflow-hidden font-mono text-xs p-4 flex flex-col gap-4">
+    <div className="w-full border border-border bg-card shadow-lg rounded-lg overflow-hidden font-mono text-xs p-4 flex flex-col gap-3">
       {/* Title bar */}
-      <div className="flex items-center justify-between border-b border-border pb-3">
+      <div className="flex items-center justify-between border-b border-border pb-2.5">
         <div className="flex items-center gap-2">
-          <Sparkle className="size-4 text-primary animate-pulse" />
-          <span className="font-semibold text-foreground text-[10px]">RAG Legalese Parser v1.0</span>
+          <Sparkle className="size-4 text-amber-500" />
+          <span className="font-semibold text-foreground text-[10px]">CONTRACT CLAUSE SIMPLIFIER</span>
         </div>
-        <span className="text-[8px] text-rose-500 font-semibold px-1.5 py-0.5 rounded border border-rose-950 bg-rose-500/5">
-          Ingested NDA
+        <span className="text-[9px] text-rose-500 font-semibold px-1.5 py-0.5 rounded border border-rose-950/20 dark:border-rose-950 bg-rose-500/5">
+          NDA Draft
         </span>
       </div>
 
-      {/* Split Viewer */}
-      <div className="flex flex-col gap-3 min-h-[160px]">
-        {/* Raw clause container */}
-        <div className="bg-black/50 border border-border rounded p-3 flex flex-col gap-1.5">
-          <span className="text-[8px] text-zinc-500 uppercase tracking-wide">NDA SOURCE CLAUSE (SECTION 11.2)</span>
-          <p className="text-[9px] text-rose-300/80 leading-relaxed font-sans select-none">
-            \"Subject to the limitations set forth in Section 4.2, either contracting party may, at its sole and absolute discretion, terminate this Agreement upon prior written notice of thirty (30) days.\"
+      <div className="flex flex-col gap-3">
+        {/* Complex Legalese Box */}
+        <div className="bg-rose-500/10 dark:bg-rose-950/20 border border-rose-500/20 rounded p-2.5">
+          <span className="text-[8px] text-rose-600 dark:text-rose-400 uppercase tracking-wide block mb-1">Raw Legal Text</span>
+          <p className="text-[10px] text-rose-900 dark:text-rose-300 leading-relaxed font-sans">
+            "...either contracting party may, at its sole and absolute discretion, terminate this Agreement upon prior written notice of thirty (30) days..."
           </p>
         </div>
 
-        {/* Simplification Trigger Bar */}
-        <div className="flex items-center gap-3">
-          <Button
-            size="xs"
-            onClick={triggerSimplification}
-            disabled={isProcessing}
-            className="rounded-md font-mono text-[9px] cursor-pointer flex items-center gap-1"
-          >
-            {isProcessing ? "Ingesting Embeddings..." : "Simplify via RAG"}
-            <ArrowsLeftRight className="size-3" />
-          </Button>
-          
-          {isProcessing && (
-            <div className="flex-1 bg-zinc-900 rounded-full h-1.5 overflow-hidden border border-zinc-800">
-              <div 
-                className="bg-primary h-full transition-all duration-300"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-          )}
-        </div>
-
-        {/* Simplified Output Container */}
-        <div className="bg-black/50 border border-border rounded p-3 flex-1 flex flex-col gap-1.5 min-h-[75px] relative">
-          <span className="text-[8px] text-zinc-500 uppercase tracking-wide">RAG Simplified Output</span>
-          
-          <AnimatePresence mode="wait">
-            {!showSimplified && !isProcessing && (
-              <div className="text-[9px] text-zinc-500 italic flex items-center justify-center h-full">
-                Click Simplify to run embeddings retrieval...
-              </div>
-            )}
-
-            {isProcessing && (
-              <div className="text-[9px] text-zinc-400 animate-pulse flex items-center gap-1.5 h-full">
-                <span>⚡ Parsing vector indices and executing summary...</span>
-              </div>
-            )}
-
-            {showSimplified && !isProcessing && (
-              <motion.div
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-1.5 text-[9px] text-emerald-400"
-              >
-                <div className="flex items-start gap-1">
-                  <span>•</span>
-                  <p>Either party can end this agreement at any time for any reason.</p>
-                </div>
-                <div className="flex items-start gap-1">
-                  <span>•</span>
-                  <p>You must provide a 30-day prior written warning message to cancel.</p>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+        {/* Simplified Box */}
+        <div className="bg-emerald-500/10 dark:bg-emerald-950/20 border border-emerald-500/20 rounded p-2.5">
+          <span className="text-[8px] text-emerald-600 dark:text-emerald-400 uppercase tracking-wide block mb-1">Simplified Explanation</span>
+          <p className="text-[10px] text-emerald-800 dark:text-emerald-300 leading-relaxed font-sans font-semibold">
+            "Either party can end the agreement at any time, but must give a 30-day written notice."
+          </p>
         </div>
       </div>
     </div>
@@ -451,95 +315,47 @@ function LegalAssistantWidget() {
 
 // Perfect Resume Widget
 function PerfectResumeWidget() {
-  const [isMapping, setIsMapping] = useState<boolean>(false)
-  const [activeStep, setActiveStep] = useState<number>(-1)
-
-  const mappings = [
-    { from: "LinkedIn Experience", to: "Resume History Schema", field: "EduSkills Intern" },
-    { from: "LinkedIn Endorsements", to: "Structured Skill List", field: "React, Node.js" },
-    { from: "LinkedIn Certifications", to: "Technical Achievements", field: "Oracle, HackerRank" }
-  ]
-
-  const runMappingSimulation = () => {
-    if (isMapping) return
-    setIsMapping(true)
-    setActiveStep(0)
-  }
-
-  useEffect(() => {
-    if (!isMapping) return
-
-    const timer = setInterval(() => {
-      setActiveStep((s) => {
-        if (s >= mappings.length - 1) {
-          clearInterval(timer)
-          // Finish animation delay
-          setTimeout(() => {
-            setIsMapping(false)
-            setActiveStep(-1)
-          }, 1500)
-          return mappings.length
-        }
-        return s + 1
-      })
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [isMapping])
-
   return (
-    <div className="w-full border border-border bg-card shadow-lg rounded-lg overflow-hidden font-mono text-xs p-4 flex flex-col gap-4">
+    <div className="w-full border border-border bg-card shadow-lg rounded-lg overflow-hidden font-mono text-xs p-4 flex flex-col gap-3">
       {/* Title bar */}
-      <div className="flex items-center justify-between border-b border-border pb-3">
+      <div className="flex items-center justify-between border-b border-border pb-2.5">
         <div className="flex items-center gap-2">
           <GithubLogo className="size-4 text-indigo-400" />
-          <span className="font-semibold text-foreground text-[10px]">linkedin_oauth_parser.go</span>
+          <span className="font-semibold text-foreground text-[10px]">LINKEDIN RESUME IMPORTER</span>
         </div>
-        <span className="text-[8px] text-zinc-500">API Sync Session</span>
+        <span className="text-[9px] text-zinc-500">API Sync Active</span>
       </div>
 
-      <div className="flex flex-col gap-3 min-h-[160px] justify-between">
-        
-        {/* Mapping Process Rows */}
-        <div className="space-y-2 flex-1">
-          <span className="text-[8px] text-zinc-500 uppercase tracking-wide block mb-1">
-            OAuth Field Transition Telemetry
-          </span>
-          
-          {mappings.map((map, idx) => {
-            const isProcessing = activeStep === idx
-            const isDone = activeStep > idx || activeStep === -1
-            
-            return (
-              <div 
-                key={idx}
-                className={`border rounded p-2 flex items-center justify-between text-[9px] transition-all ${
-                  isProcessing 
-                    ? "border-primary bg-primary/5 text-foreground" 
-                    : isDone && activeStep !== -1 
-                      ? "border-emerald-800/40 bg-emerald-500/5 text-emerald-400"
-                      : "border-border/60 bg-muted/20 text-muted-foreground"
-                }`}
-              >
-                <span className="font-semibold">{map.from}</span>
-                <span className="text-[8px] opacity-75">──►</span>
-                <span className="italic">{map.field}</span>
-              </div>
-            )
-          })}
+      {/* Mapping Visualization */}
+      <div className="bg-zinc-100 dark:bg-zinc-900/40 border border-border/60 rounded p-3 flex flex-col gap-2.5">
+        <div className="flex justify-between items-center text-[10px]">
+          <div className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 font-semibold">
+            LinkedIn Profile
+          </div>
+          <span className="text-zinc-400 dark:text-zinc-600">─────►</span>
+          <div className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-semibold">
+            PDF Resume
+          </div>
         </div>
 
-        {/* Sync Trigger button */}
-        <Button
-          size="xs"
-          onClick={runMappingSimulation}
-          disabled={isMapping}
-          className="rounded-md font-mono text-[9px] w-full cursor-pointer flex items-center justify-center gap-1.5"
-        >
-          {isMapping ? "Syncing API Fields..." : "Run LinkedIn Data Sync"}
-          <ArrowRight className="size-3" />
-        </Button>
+        <div className="space-y-1.5 text-[10px] text-zinc-600 dark:text-zinc-400">
+          <div className="flex justify-between border-b border-border/20 pb-1">
+            <span>Profile Data (Bio & Title)</span>
+            <span className="text-zinc-950 dark:text-foreground font-semibold">✓ Imported</span>
+          </div>
+          <div className="flex justify-between border-b border-border/20 pb-1">
+            <span>Work History (Roles)</span>
+            <span className="text-zinc-950 dark:text-foreground font-semibold">✓ Auto-Compiled</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Skills & Certificates</span>
+            <span className="text-zinc-950 dark:text-foreground font-semibold">✓ Structured</span>
+          </div>
+        </div>
+      </div>
 
+      <div className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded py-2 text-center font-semibold text-[10px]">
+        ✓ Built directly from LinkedIn profile data
       </div>
     </div>
   )
