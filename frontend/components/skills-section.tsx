@@ -3,8 +3,7 @@ import {
   Cpu, 
   Database, 
   Wrench, 
-  Code,
-  Sparkle
+  Code
 } from "@phosphor-icons/react"
 
 interface Skill {

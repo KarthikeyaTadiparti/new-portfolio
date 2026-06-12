@@ -201,10 +201,10 @@ export function HeroSection() {
               className="rounded-md font-mono text-xs cursor-pointer"
               asChild
             >
-              <a href="/resume.pdf" download="Karthikeya_Tadiparti_Resume.pdf">
+              {/* <a href="/KarthikeyaTadiparti_Resume.pdf" download="KarthikeyaTadiparti_Resume.pdf">
                 Download Resume
                 <DownloadSimple className="size-3.5 ml-1" />
-              </a>
+              </a> */}
             </Button>
           </div>
         </div>

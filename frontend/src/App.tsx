@@ -3,6 +3,7 @@ import { ProjectsSection } from '@/components/projects-section'
 import { SkillsSection } from '@/components/skills-section'
 import { EducationSection } from '@/components/education-section'
 import { AboutSection } from '@/components/about-section'
+import { ContactSection } from '@/components/contact-section'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <ProjectsSection />
         <SkillsSection />
         <EducationSection />
+        <ContactSection />
       </main>
     </div>
   )
