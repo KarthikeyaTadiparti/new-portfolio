@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { 
-  GithubLogo, 
-  LinkedinLogo, 
-  FileText, 
-  ArrowSquareOut
+  GithubLogoIcon, 
+  LinkedinLogoIcon, 
+  FileTextIcon, 
+  ArrowSquareOutIcon
 } from "@phosphor-icons/react"
 
 export function ContactSection() {
@@ -20,19 +20,19 @@ export function ContactSection() {
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/karthikeya10/",
-      icon: <LinkedinLogo className="size-4 shrink-0" />,
+      icon: <LinkedinLogoIcon className="size-4 shrink-0" />,
       label: "linkedin.com/in/karthikeya10"
     },
     {
       name: "GitHub",
       url: "https://github.com/KarthikeyaTadiparti",
-      icon: <GithubLogo className="size-4 shrink-0" />,
+      icon: <GithubLogoIcon className="size-4 shrink-0" />,
       label: "github.com/KarthikeyaTadiparti"
     },
     {
       name: "Curriculum Vitae",
       url: "/KarthikeyaTadiparti_Resume.pdf",
-      icon: <FileText className="size-4 shrink-0" />,
+      icon: <FileTextIcon className="size-4 shrink-0" />,
       label: "Download Resume PDF",
       download: "KarthikeyaTadiparti_Resume.pdf"
     }
@@ -120,7 +120,7 @@ export function ContactSection() {
                     </span>
                   </div>
                 </div>
-                <ArrowSquareOut className="size-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <ArrowSquareOutIcon className="size-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </a>
             ))}
           </div>

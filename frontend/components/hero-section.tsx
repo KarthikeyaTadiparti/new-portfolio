@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { 
-  Terminal, 
-  Cpu, 
-  FileText, 
-  ArrowRight, 
-  ArrowClockwise,
-  Sun,
-  Moon,
-  Code
+  TerminalIcon, 
+  CpuIcon, 
+  FileTextIcon, 
+  ArrowRightIcon, 
+  ArrowClockwiseIcon, 
+  CodeIcon
 } from "@phosphor-icons/react"
 import { Button } from "@/components/ui/button"
-import { useTheme } from "@/components/theme-provider"
 
 // Project definitions and step logs for the terminal simulator
 interface LogStep {
@@ -29,7 +26,6 @@ interface ProjectConfig {
 }
 
 export function HeroSection() {
-  const { theme, setTheme } = useTheme()
   const [activeTab, setActiveTab] = useState<string>("smart-recruiter")
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0)
   const [isPlaying, setIsPlaying] = useState<boolean>(true)
@@ -40,7 +36,7 @@ export function HeroSection() {
       id: "smart-recruiter",
       name: "Smart Recruiter",
       shortDesc: "AI Voice Interview Platform",
-      icon: <Cpu className="size-4" />,
+      icon: <CpuIcon className="size-4" />,
       steps: [
         { type: "command", text: "npm run start --voice-screener", delay: 300 },
         { type: "info", text: "[10:27:01] Listening on port 8080 (Redis + Postgres online)...", delay: 400 },
@@ -55,7 +51,7 @@ export function HeroSection() {
       id: "legal-assistant",
       name: "Legal Assistant",
       shortDesc: "AI RAG Document Simplifier",
-      icon: <FileText className="size-4" />,
+      icon: <FileTextIcon className="size-4" />,
       steps: [
         { type: "command", text: "n8n trigger --pipeline legal-doc-rag", delay: 300 },
         { type: "info", text: "[10:27:01] Fetching document: nda_draft_final.pdf (4.2 MB)", delay: 400 },
@@ -70,7 +66,7 @@ export function HeroSection() {
       id: "perfect-resume",
       name: "Perfect Resume",
       shortDesc: "API Resume Builder",
-      icon: <Terminal className="size-4" />,
+      icon: <TerminalIcon className="size-4" />,
       steps: [
         { type: "command", text: "curl -X POST /api/resume/populate-linkedin", delay: 300 },
         { type: "info", text: "[10:27:01] Initiating LinkedIn OAuth payload verification...", delay: 400 },
@@ -119,33 +115,12 @@ export function HeroSection() {
       {/* Background patterns */}
       <div className="absolute inset-0 bg-[radial-gradient(#e4e4e7_1px,transparent_1px)] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
       
-      {/* Sleek Theme and Title Controls */}
-      <div className="absolute top-6 right-6 flex items-center gap-2 z-10">
-        <Button
-          variant="outline"
-          size="icon-sm"
-          className="rounded-md"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          aria-label="Toggle theme"
-        >
-          {theme === "dark" ? (
-            <Sun className="size-4 text-amber-500" />
-          ) : (
-            <Moon className="size-4 text-indigo-500" />
-          )}
-        </Button>
-      </div>
+
 
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative">
         
         {/* Left Column: Context Storytelling */}
         <div className="lg:col-span-7 flex flex-col space-y-6 text-left">
-          
-          {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full border border-border bg-muted/50 text-[10px] uppercase tracking-wider text-muted-foreground font-mono">
-            <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            CS Undergraduate & Product Engineer
-          </div>
 
           <div className="space-y-2">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-mono text-foreground leading-[1.1]">
@@ -192,7 +167,7 @@ export function HeroSection() {
               }}
             >
               View Projects
-              <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+              <ArrowRightIcon className="size-3.5 transition-transform group-hover:translate-x-1" />
             </Button>
             <Button
               variant="outline"
@@ -220,7 +195,7 @@ export function HeroSection() {
                 <div className="size-3 rounded-full bg-emerald-500/80" />
               </div>
               <div className="text-[10px] text-muted-foreground tracking-wide flex items-center gap-1.5">
-                <Code className="size-3" />
+                <CodeIcon className="size-3" />
                 tadiparti-pipeline-v1.0.sh
               </div>
               <button 
@@ -228,7 +203,7 @@ export function HeroSection() {
                 className="text-muted-foreground hover:text-foreground transition-colors outline-none cursor-pointer"
                 title="Restart Log Stream"
               >
-                <ArrowClockwise className="size-3.5" />
+                <ArrowClockwiseIcon className="size-3.5" />
               </button>
             </div>
 

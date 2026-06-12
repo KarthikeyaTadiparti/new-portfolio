@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react"
+import { SunIcon, MoonIcon } from "@phosphor-icons/react"
+import { Button } from "@/components/ui/button"
+import { useTheme } from "@/components/theme-provider"
 
 export function Navbar() {
+  const { theme, setTheme } = useTheme()
   const [activeSection, setActiveSection] = useState("hero")
 
   const navItems = [
@@ -57,26 +61,44 @@ export function Navbar() {
           {"<KT />"}
         </a>
 
-        {/* Navigation Links */}
-        <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar max-w-[80%] py-1">
-          {navItems.map((item) => {
-            const isActive = activeSection === item.id
-            return (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => handleNavClick(e, item.id)}
-                className={`py-1 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors relative shrink-0 font-semibold cursor-pointer ${
-                  isActive ? "text-zinc-950 dark:text-zinc-50" : "text-zinc-400 dark:text-zinc-500"
-                }`}
-              >
-                {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
-                )}
-              </a>
-            )
-          })}
+        {/* Right Menu & Actions */}
+        <div className="flex items-center gap-4 sm:gap-6">
+          {/* Navigation Links */}
+          <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar py-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => handleNavClick(e, item.id)}
+                  className={`py-1 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors relative shrink-0 font-semibold cursor-pointer ${
+                    isActive ? "text-zinc-950 dark:text-zinc-50" : "text-zinc-400 dark:text-zinc-500"
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                  )}
+                </a>
+              )
+            })}
+          </div>
+
+          {/* Theme Switcher Button */}
+          <Button
+            variant="outline"
+            size="icon-sm"
+            className="rounded-md shrink-0 cursor-pointer h-8 w-8"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? (
+              <SunIcon className="size-4 text-amber-500" />
+            ) : (
+              <MoonIcon className="size-4 text-indigo-500" />
+            )}
+          </Button>
         </div>
 
       </div>

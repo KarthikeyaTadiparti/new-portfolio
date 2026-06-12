@@ -1,10 +1,10 @@
 import { motion } from "motion/react"
 import { 
-  GithubLogo, 
-  ArrowSquareOut,
-  CheckCircle,
-  Cpu,
-  Sparkle
+  GithubLogoIcon, 
+  ArrowSquareOutIcon,
+  CheckCircleIcon,
+  CpuIcon,
+  SparkleIcon
 } from "@phosphor-icons/react"
 import { Button } from "@/components/ui/button"
 
@@ -167,7 +167,7 @@ export function ProjectsSection() {
                 <ul className="flex flex-col gap-2 text-sm">
                   {project.impact.map((imp, index) => (
                     <li key={index} className="flex items-start gap-2 text-zinc-700 dark:text-zinc-300">
-                      <CheckCircle className="size-4 text-emerald-500 shrink-0 mt-0.5" />
+                      <CheckCircleIcon className="size-4 text-emerald-500 shrink-0 mt-0.5" />
                       <span>{imp}</span>
                     </li>
                   ))}
@@ -190,7 +190,7 @@ export function ProjectsSection() {
               <div className="flex items-center gap-3 pt-2">
                 <Button variant="outline" size="sm" className="rounded-md font-mono text-xs cursor-pointer group" asChild>
                   <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
-                    <GithubLogo className="size-4" />
+                    <GithubLogoIcon className="size-4" />
                     Source Code
                   </a>
                 </Button>
@@ -198,7 +198,7 @@ export function ProjectsSection() {
                   <Button variant="ghost" size="sm" className="rounded-md font-mono text-xs text-zinc-400 hover:text-foreground cursor-pointer" asChild>
                     <a href={project.demo} className="flex items-center gap-1.5">
                       Live Demonstration
-                      <ArrowSquareOut className="size-4" />
+                      <ArrowSquareOutIcon className="size-4" />
                     </a>
                   </Button>
                 )}
@@ -222,7 +222,7 @@ function SmartRecruiterWidget() {
       {/* Title block */}
       <div className="flex items-center justify-between border-b border-border pb-2.5">
         <div className="flex items-center gap-2">
-          <Cpu className="size-4 text-emerald-500" />
+          <CpuIcon className="size-4 text-emerald-500" />
           <span className="font-semibold text-foreground text-[10px]">AI SCREENING REPORT</span>
         </div>
         <span className="text-[9px] text-zinc-500">Candidate #4021</span>
@@ -281,7 +281,7 @@ function LegalAssistantWidget() {
       {/* Title bar */}
       <div className="flex items-center justify-between border-b border-border pb-2.5">
         <div className="flex items-center gap-2">
-          <Sparkle className="size-4 text-amber-500" />
+          <SparkleIcon className="size-4 text-amber-500" />
           <span className="font-semibold text-foreground text-[10px]">CONTRACT CLAUSE SIMPLIFIER</span>
         </div>
         <span className="text-[9px] text-rose-500 font-semibold px-1.5 py-0.5 rounded border border-rose-950/20 dark:border-rose-950 bg-rose-500/5">
@@ -317,7 +317,7 @@ function PerfectResumeWidget() {
       {/* Title bar */}
       <div className="flex items-center justify-between border-b border-border pb-2.5">
         <div className="flex items-center gap-2">
-          <GithubLogo className="size-4 text-indigo-400" />
+          <GithubLogoIcon className="size-4 text-indigo-400" />
           <span className="font-semibold text-foreground text-[10px]">LINKEDIN RESUME IMPORTER</span>
         </div>
         <span className="text-[9px] text-zinc-500">API Sync Active</span>

@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { 
-  GraduationCap, 
-  BookOpen, 
-  Compass, 
-  CheckCircle,
-  Terminal
+  GraduationCapIcon, 
+  BookOpenIcon, 
+  CompassIcon, 
+  CheckCircleIcon,
+  TerminalIcon
 } from "@phosphor-icons/react"
 
 interface Milestone {
@@ -39,7 +39,7 @@ export function EducationSection() {
       percentVal: 85.1,
       location: "Vizianagaram, Andhra Pradesh",
       status: "Graduated",
-      icon: <GraduationCap className="size-5" />,
+      icon: <GraduationCapIcon className="size-5" />,
       logs: [
         { type: "info", text: "[System Status] B.Tech CSE lifecycle completed." },
         { type: "metric", text: "Performance: 8.51/10.0 Cumulative Grade Point Average." },
@@ -58,7 +58,7 @@ export function EducationSection() {
       percentVal: 96.0,
       location: "Visakhapatnam, Andhra Pradesh",
       status: "Completed",
-      icon: <BookOpen className="size-5" />,
+      icon: <BookOpenIcon className="size-5" />,
       logs: [
         { type: "info", text: "[System Status] Intermediate MPC coursework trace finished." },
         { type: "metric", text: "Performance: 96% score in AP Board Examination." },
@@ -74,7 +74,7 @@ export function EducationSection() {
       percentVal: 99.0,
       location: "Visakhapatnam, Andhra Pradesh",
       status: "Completed",
-      icon: <Compass className="size-5" />,
+      icon: <CompassIcon className="size-5" />,
       logs: [
         { type: "info", text: "[System Status] Secondary School Certificate pipeline closed." },
         { type: "metric", text: "Performance: 99% score in SSC Board Examination." },
@@ -171,7 +171,7 @@ export function EducationSection() {
                 <div className="size-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
               </div>
               <div className="text-[10px] text-muted-foreground tracking-wider uppercase flex items-center gap-1.5">
-                <Terminal className="size-3 text-emerald-500" />
+                <TerminalIcon className="size-3 text-emerald-500" />
                 Telemetry Diagnostic: node_{activeId}.yaml
               </div>
               <div className="size-4" />
@@ -263,7 +263,7 @@ export function EducationSection() {
               {/* Status Footer */}
               <div className="border-t border-border pt-4 flex items-center justify-between text-[10px] text-zinc-500 select-none">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle className="size-4 text-emerald-500" />
+                  <CheckCircleIcon className="size-4 text-emerald-500" />
                   <span>Pipeline integrity: SECURE</span>
                 </div>
                 <span>NODE_{activeId.toUpperCase()}_OK</span>

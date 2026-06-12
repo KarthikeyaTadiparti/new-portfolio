@@ -1,9 +1,9 @@
 import { 
-  Terminal, 
-  Cpu, 
-  Database, 
-  Wrench, 
-  Code
+  TerminalIcon, 
+  CpuIcon, 
+  DatabaseIcon, 
+  WrenchIcon, 
+  CodeIcon
 } from "@phosphor-icons/react"
 
 interface Skill {
@@ -52,31 +52,31 @@ export function SkillsSection() {
   const categories = [
     { 
       name: "Languages", 
-      icon: <Code className="size-4 text-emerald-500" />,
+      icon: <CodeIcon className="size-4 text-emerald-500" />,
       borderClass: "border-t-2 border-t-emerald-500/80 dark:border-t-emerald-500/50",
       dotClass: "bg-emerald-500"
     },
     { 
       name: "Frontend", 
-      icon: <Terminal className="size-4 text-sky-500" />,
+      icon: <TerminalIcon className="size-4 text-sky-500" />,
       borderClass: "border-t-2 border-t-sky-500/80 dark:border-t-sky-500/50",
       dotClass: "bg-sky-500"
     },
     { 
       name: "Backend", 
-      icon: <Cpu className="size-4 text-indigo-500" />,
+      icon: <CpuIcon className="size-4 text-indigo-500" />,
       borderClass: "border-t-2 border-t-indigo-500/80 dark:border-t-indigo-500/50",
       dotClass: "bg-indigo-500"
     },
     { 
       name: "Databases & Caching", 
-      icon: <Database className="size-4 text-amber-500" />,
+      icon: <DatabaseIcon className="size-4 text-amber-500" />,
       borderClass: "border-t-2 border-t-amber-500/80 dark:border-t-amber-500/50",
       dotClass: "bg-amber-500"
     },
     { 
       name: "Tools", 
-      icon: <Wrench className="size-4 text-purple-500" />,
+      icon: <WrenchIcon className="size-4 text-purple-500" />,
       borderClass: "border-t-2 border-t-purple-500/80 dark:border-t-purple-500/50",
       dotClass: "bg-purple-500"
     }
