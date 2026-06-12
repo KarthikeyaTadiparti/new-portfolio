@@ -86,10 +86,7 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="py-20 px-6 max-w-7xl mx-auto w-full border-b border-border bg-background relative">
       {/* Eyebrow and Section Header */}
-      <div className="flex flex-col space-y-4 mb-16 text-left max-w-2xl font-mono">
-        {/* <div className="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full border border-border bg-muted/50 text-xs uppercase tracking-wider text-muted-foreground">
-          Case Studies
-        </div> */}
+      <div className="flex flex-col space-y-4 mb-12 text-left max-w-2xl font-mono">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
           Projects
         </h2>

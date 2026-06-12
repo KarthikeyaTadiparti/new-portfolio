@@ -10,9 +10,9 @@ function App() {
       <main>
         <HeroSection />
         <AboutSection />
-        <EducationSection />
         <ProjectsSection />
         <SkillsSection />
+        <EducationSection />
       </main>
     </div>
   )

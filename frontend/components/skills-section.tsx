@@ -10,7 +10,7 @@ import {
 interface Skill {
   id: string
   name: string
-  category: "Languages" | "Frontend" | "Backend" | "Databases" | "Tools"
+  category: "Languages" | "Frontend" | "Backend" | "Databases & Caching" | "Tools"
   isCore: boolean
 }
 
@@ -21,8 +21,6 @@ export function SkillsSection() {
     { id: "javascript", name: "JavaScript", category: "Languages", isCore: true },
     { id: "java", name: "Java", category: "Languages", isCore: true },
     { id: "python", name: "Python", category: "Languages", isCore: false },
-    { id: "cplusplus", name: "C++", category: "Languages", isCore: false },
-    { id: "c", name: "C", category: "Languages", isCore: false },
 
     // --- FRONTEND ---
     { id: "react", name: "React.js", category: "Frontend", isCore: true },
@@ -34,14 +32,14 @@ export function SkillsSection() {
     { id: "nodejs", name: "Node.js", category: "Backend", isCore: true },
     { id: "expressjs", name: "Express.js", category: "Backend", isCore: true },
     { id: "restapis", name: "REST APIs", category: "Backend", isCore: true },
-    { id: "jwt", name: "JWT Auth", category: "Backend", isCore: false },
+    { id: "jwt", name: "JWT Authentication", category: "Backend", isCore: false },
     { id: "rag", name: "RAG Pipeline", category: "Backend", isCore: true },
 
-    // --- DATABASES ---
-    { id: "postgresql", name: "PostgreSQL", category: "Databases", isCore: true },
-    { id: "mongodb", name: "MongoDB", category: "Databases", isCore: false },
-    { id: "redis", name: "Redis Cache", category: "Databases", isCore: true },
-    { id: "mysql", name: "MySQL", category: "Databases", isCore: false },
+    // --- DATABASES & CACHING ---
+    { id: "postgresql", name: "PostgreSQL", category: "Databases & Caching", isCore: true },
+    { id: "mongodb", name: "MongoDB", category: "Databases & Caching", isCore: false },
+    { id: "redis", name: "Redis Cache", category: "Databases & Caching", isCore: true },
+    { id: "mysql", name: "MySQL", category: "Databases & Caching", isCore: false },
 
     // --- TOOLS ---
     { id: "git", name: "Git", category: "Tools", isCore: true },
@@ -72,7 +70,7 @@ export function SkillsSection() {
       dotClass: "bg-indigo-500"
     },
     { 
-      name: "Databases", 
+      name: "Databases & Caching", 
       icon: <Database className="size-4 text-amber-500" />,
       borderClass: "border-t-2 border-t-amber-500/80 dark:border-t-amber-500/50",
       dotClass: "bg-amber-500"
@@ -92,16 +90,12 @@ export function SkillsSection() {
       <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
 
       {/* Section Header */}
-      <div className="flex flex-col space-y-4 mb-16 text-left max-w-3xl">
-        <div className="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full border border-border bg-muted/30 text-[10px] uppercase tracking-wider text-muted-foreground">
-          <Sparkle className="size-3.5 text-primary animate-pulse" />
-          Technical Skillset
-        </div>
+      <div className="flex flex-col space-y-4 mb-12 text-left max-w-3xl">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-          Toolkit & Core Competencies
+          Technical Skillset
         </h2>
         <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-2xl">
-          A track record of using modern technologies to build scalable, production-grade applications.
+          Technologies I rely on to design, build, and ship reliable software systems.
         </p>
       </div>
 
