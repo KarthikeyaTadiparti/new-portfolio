@@ -4,7 +4,6 @@ import {
   GraduationCap, 
   BookOpen, 
   Compass, 
-  Sparkle, 
   CheckCircle,
   Terminal
 } from "@phosphor-icons/react"
