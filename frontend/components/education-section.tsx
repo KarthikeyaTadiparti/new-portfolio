@@ -234,23 +234,23 @@ export function EducationSection() {
                     <span className="text-[10px] text-zinc-500 font-semibold uppercase tracking-wider block">
                       Execution Trace Logs
                     </span>
-                    <div className="bg-zinc-950 text-zinc-300 p-3.5 rounded-lg text-[11px] font-mono leading-relaxed border border-zinc-900 flex flex-col gap-1.5">
+                    <div className="bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-300 p-3.5 rounded-lg text-[11px] font-mono leading-relaxed border border-border dark:border-zinc-900 flex flex-col gap-1.5">
                       {activeMilestone.logs.map((log, lIdx) => {
-                        let logColor = "text-zinc-400"
+                        let logColor = "text-zinc-500 dark:text-zinc-400"
                         let prefix = "•"
                         if (log.type === "info") {
-                          logColor = "text-zinc-500"
+                          logColor = "text-zinc-400 dark:text-zinc-500"
                           prefix = "i"
                         } else if (log.type === "metric") {
-                          logColor = "text-amber-400 font-medium"
+                          logColor = "text-amber-600 dark:text-amber-400 font-medium"
                           prefix = "⌁"
                         } else if (log.type === "success") {
-                          logColor = "text-emerald-400 font-bold"
+                          logColor = "text-emerald-600 dark:text-emerald-400 font-bold"
                           prefix = "✓"
                         }
                         return (
                           <div key={lIdx} className="flex items-start gap-2">
-                            <span className="text-zinc-600 select-none text-[9px] w-3 text-right">{prefix}</span>
+                            <span className="text-zinc-400 dark:text-zinc-600 select-none text-[9px] w-3 text-right">{prefix}</span>
                             <span className={logColor}>{log.text}</span>
                           </div>
                         )

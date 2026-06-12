@@ -240,26 +240,26 @@ export function HeroSection() {
               </div>
 
               {/* Console Output Terminal */}
-              <div className="col-span-8 bg-black/95 p-4 overflow-y-auto text-[10px] flex flex-col gap-1.5 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+              <div className="col-span-8 bg-zinc-50 dark:bg-black/95 p-4 overflow-y-auto text-[10px] flex flex-col gap-1.5 border-l border-border dark:border-zinc-900 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800 scrollbar-track-transparent">
                 <AnimatePresence mode="popLayout">
                   {currentProject.steps.slice(0, currentStepIndex).map((step, idx) => {
-                    let textClass = "text-zinc-300"
+                    let textClass = "text-zinc-800 dark:text-zinc-300"
                     let prefix = " "
                     
                     if (step.type === "command") {
-                      textClass = "text-indigo-400 font-semibold"
+                      textClass = "text-indigo-600 dark:text-indigo-400 font-semibold"
                       prefix = "$ "
                     } else if (step.type === "info") {
-                      textClass = "text-zinc-500"
+                      textClass = "text-zinc-400 dark:text-zinc-500"
                       prefix = "i "
                     } else if (step.type === "action") {
-                      textClass = "text-zinc-200"
+                      textClass = "text-zinc-700 dark:text-zinc-200"
                       prefix = "⚙ "
                     } else if (step.type === "metric") {
-                      textClass = "text-amber-400 font-medium"
+                      textClass = "text-amber-600 dark:text-amber-400 font-medium"
                       prefix = "⌁ "
                     } else if (step.type === "success") {
-                      textClass = "text-emerald-400"
+                      textClass = "text-emerald-600 dark:text-emerald-400 font-medium"
                       prefix = "✔ "
                     }
 
@@ -271,10 +271,10 @@ export function HeroSection() {
                         transition={{ duration: 0.15 }}
                         className="flex items-start gap-1"
                       >
-                        <span className="text-zinc-600 select-none w-4 text-right pr-1">
+                        <span className="text-zinc-400 dark:text-zinc-600 select-none w-4 text-right pr-1">
                           {idx + 1}
                         </span>
-                        <span className="text-zinc-700 select-none">
+                        <span className="text-zinc-400 dark:text-zinc-700 select-none font-bold">
                           {prefix}
                         </span>
                         <span className={`flex-1 break-all ${textClass}`}>
@@ -289,7 +289,7 @@ export function HeroSection() {
                 {isPlaying && currentStepIndex < currentProject.steps.length && (
                   <div className="flex items-center gap-1 pl-5">
                     <div className="size-1 rounded-full bg-indigo-500 animate-ping" />
-                    <span className="text-zinc-600 italic select-none">running pipeline...</span>
+                    <span className="text-zinc-400 dark:text-zinc-600 italic select-none">running pipeline...</span>
                   </div>
                 )}
 
@@ -298,9 +298,9 @@ export function HeroSection() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="flex items-center gap-1.5 mt-2 pt-2 border-t border-zinc-900 text-zinc-500"
+                    className="flex items-center gap-1.5 mt-2 pt-2 border-t border-zinc-200 dark:border-zinc-900 text-zinc-400 dark:text-zinc-500"
                   >
-                    <span className="text-zinc-600 select-none w-4 text-right pr-1">
+                    <span className="text-zinc-400 dark:text-zinc-600 select-none w-4 text-right pr-1">
                       {currentProject.steps.length + 1}
                     </span>
                     <span className="text-emerald-500/80">●</span>

@@ -105,7 +105,7 @@ export function ContactSection() {
                 download={channel.download}
                 target={channel.download ? undefined : "_blank"}
                 rel={channel.download ? undefined : "noopener noreferrer"}
-                className="flex items-center justify-between p-3.5 rounded-lg border border-border bg-zinc-50/50 dark:bg-card/25 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100/30 dark:hover:bg-card/40 transition-all duration-200 group"
+                className="flex items-center justify-between p-3.5 rounded-lg border border-border bg-white dark:bg-card/25 shadow-[0_1px_3px_rgba(0,0,0,0.01),0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50/50 dark:hover:bg-card/40 transition-all duration-200 group"
               >
                 <div className="flex items-center gap-3">
                   <div className="text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors">
