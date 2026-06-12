@@ -5,7 +5,6 @@ import {
   Cpu, 
   FileText, 
   ArrowRight, 
-  DownloadSimple, 
   ArrowClockwise,
   Sun,
   Moon,
@@ -116,7 +115,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center px-6 py-12 md:py-24 overflow-hidden border-b border-border bg-background">
+    <section id="hero" className="relative min-h-[90vh] flex flex-col justify-center px-6 py-12 md:py-24 overflow-hidden border-b border-border bg-background">
       {/* Background patterns */}
       <div className="absolute inset-0 bg-[radial-gradient(#e4e4e7_1px,transparent_1px)] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
       
