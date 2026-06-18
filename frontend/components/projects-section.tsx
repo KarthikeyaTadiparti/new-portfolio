@@ -1,34 +1,35 @@
-import { motion } from "motion/react"
+import { useState } from "react"
+import { motion, AnimatePresence } from "motion/react"
 import { 
   GithubLogoIcon, 
   ArrowSquareOutIcon,
-  CheckCircleIcon,
-  CpuIcon,
-  SparkleIcon
+  CheckCircleIcon
 } from "@phosphor-icons/react"
 import { Button } from "@/components/ui/button"
+import { ProjectPreview } from "./project-preview"
 
 interface ProjectData {
   id: string
   title: string
   subtitle: string
-  badge: string
   tech: string[]
   problem: string
   solution: string
   impact: string[]
-  learnings: string[]
   github: string
   demo: string
+  homepageScreenshot: string
+  liveUrl: string
 }
 
 export function ProjectsSection() {
+  const [activeIdx, setActiveIdx] = useState(0)
+
   const projects: ProjectData[] = [
     {
       id: "smart-recruiter",
       title: "Smart Recruiter",
       subtitle: "AI-Powered Voice Interview Platform",
-      badge: "Scale & Backend Focus",
       tech: ["React.js", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Redis"],
       problem: "Screening hundreds of candidates takes days, and manual interviews can be slow, expensive, and biased.",
       solution: "Built an AI voice assistant that interviews candidates, records transcripts, and scores skills automatically.",
@@ -36,18 +37,15 @@ export function ProjectsSection() {
         "Reduced recruiter screening time by 70%",
         "Scaled session caching to Redis with 2ms response times"
       ],
-      learnings: [
-        "Handled real-time voice recording uploads using multipart buffers",
-        "Set up fast key-value caching structures using Redis to track states"
-      ],
       github: "https://github.com",
-      demo: "#"
+      demo: "#",
+      homepageScreenshot: "/smart_recruiter.png",
+      liveUrl: "https://smartrecruiter.ai"
     },
     {
       id: "legal-assistant",
       title: "Legal Assistant",
       subtitle: "Custom AI RAG Document Simplifier",
-      badge: "Visionova Hackathon • Top 13",
       tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "n8n", "RAG Pipeline"],
       problem: "Founder contracts and NDAs are full of complicated legal words that are very hard to read and parse.",
       solution: "Developed an AI helper using n8n and vector databases that reads agreements and explains them in simple English.",
@@ -55,18 +53,15 @@ export function ProjectsSection() {
         "Built the entire application in a 24-hour hackathon window",
         "Helped founders identify contract risks in under 60 seconds"
       ],
-      learnings: [
-        "Connected third-party APIs and file systems using n8n visual pipelines",
-        "Tuned vector databases to prevent AI from making up legal advice"
-      ],
       github: "https://github.com",
-      demo: "#"
+      demo: "#",
+      homepageScreenshot: "/legalassistant.png",
+      liveUrl: "https://legalassistant.ai"
     },
     {
       id: "perfect-resume",
       title: "Perfect Resume",
       subtitle: "Dynamic LinkedIn Profile to PDF CV Builder",
-      badge: "Productivity Utility",
       tech: ["React.js", "Redux", "Node.js", "Express.js", "MongoDB", "OAuth 2.0"],
       problem: "Formatting resumes manually is slow, and copying info from LinkedIn is tedious and breaks layouts.",
       solution: "Created an automated CV compiler that pulls data from LinkedIn profiles via OAuth and creates clean PDFs instantly.",
@@ -74,65 +69,73 @@ export function ProjectsSection() {
         "Decreased average resume generation time from 1 hour to 30 seconds",
         "Automated profile sync for consistent professional history data"
       ],
-      learnings: [
-        "Managed complex form state across multiple steps using Redux slices",
-        "Handled secure LinkedIn login access and API token rotations"
-      ],
       github: "https://github.com",
-      demo: "#"
+      demo: "#",
+      homepageScreenshot: "/perfectresume.png",
+      liveUrl: "https://perfectresume.io"
     }
   ]
+
+  const activeProject = projects[activeIdx]
 
   return (
     <section id="projects" className="py-20 px-6 max-w-7xl mx-auto w-full border-b border-border bg-background relative">
       {/* Eyebrow and Section Header */}
-      <div className="flex flex-col space-y-4 mb-12 text-left max-w-2xl font-mono">
+      <div className="flex flex-col space-y-4 mb-8 text-left max-w-2xl font-mono">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
           Projects
         </h2>
-        {/* <p className="text-muted-foreground text-base leading-relaxed">
-          Explore three production-grade products designed to automate workflows, simplify data extraction, and increase operational efficiency.
-        </p> */}
       </div>
 
-      {/* Case Studies Stack */}
-      <div className="flex flex-col space-y-24">
-        {projects.map((project, idx) => (
+      {/* SaaS Style Tabs Navigation */}
+      <div className="flex items-center gap-3 overflow-x-auto pb-4 mb-12 scrollbar-none border-b border-border/10">
+        {projects.map((project, idx) => {
+          const isActive = activeIdx === idx
+          return (
+            <button
+              key={project.id}
+              onClick={() => setActiveIdx(idx)}
+              className={`relative px-4 py-2 rounded-lg font-mono text-xs md:text-sm transition-all duration-300 flex items-center gap-2 cursor-pointer border select-none ${
+                isActive 
+                  ? "border-emerald-500 text-foreground bg-emerald-500/5 ]" 
+                  : "border-border/40 text-muted-foreground hover:border-border hover:text-foreground bg-muted/5"
+              }`}
+            >
+              <span className={`size-1.5 rounded-full transition-colors duration-300 ${
+                isActive ? "bg-emerald-500 animate-pulse" : "bg-zinc-600"
+              }`} />
+              <span>{project.title}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Carousel Project Showcase Frame */}
+      <div className="relative min-h-[480px]">
+        <AnimatePresence mode="wait">
           <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            key={activeProject.id}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
             className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
           >
             
-            {/* Visual Micro-Widget (Column 5 on Desktop) */}
-            <div className={`lg:col-span-5 w-full order-last ${idx % 2 === 0 ? "lg:order-last" : "lg:order-first"}`}>
-              {project.id === "smart-recruiter" && <SmartRecruiterWidget />}
-              {project.id === "legal-assistant" && <LegalAssistantWidget />}
-              {project.id === "perfect-resume" && <PerfectResumeWidget />}
-            </div>
-
-            {/* Content Specs (Column 7 on Desktop) */}
+            {/* Left Side: Content Specs (Column 7 on Desktop) */}
             <div className="lg:col-span-7 flex flex-col space-y-6 text-left">
               <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="px-2.5 py-0.5 rounded border border-primary/20 bg-primary/5 text-primary text-xs font-mono uppercase tracking-wide">
-                    {project.badge}
-                  </span>
-                </div>
                 <h3 className="text-2xl md:text-3xl font-bold font-mono tracking-tight text-foreground">
-                  {project.title}
+                  {activeProject.title}
                 </h3>
                 <p className="text-base text-muted-foreground font-mono">
-                  {project.subtitle}
+                  {activeProject.subtitle}
                 </p>
               </div>
 
               {/* Technologies list */}
               <div className="flex flex-wrap gap-2">
-                {project.tech.map((t) => (
+                {activeProject.tech.map((t) => (
                   <span key={t} className="px-3 py-1 rounded border border-border bg-muted/30 text-xs font-mono text-zinc-400">
                     {t}
                   </span>
@@ -146,7 +149,7 @@ export function ProjectsSection() {
                     [Problem Statement]
                   </span>
                   <p className="text-muted-foreground leading-relaxed">
-                    {project.problem}
+                    {activeProject.problem}
                   </p>
                 </div>
                 <div>
@@ -154,7 +157,7 @@ export function ProjectsSection() {
                     [Engineered Solution]
                   </span>
                   <p className="text-foreground leading-relaxed">
-                    {project.solution}
+                    {activeProject.solution}
                   </p>
                 </div>
               </div>
@@ -165,7 +168,7 @@ export function ProjectsSection() {
                   Key Metrics & Impact
                 </span>
                 <ul className="flex flex-col gap-2 text-sm">
-                  {project.impact.map((imp, index) => (
+                  {activeProject.impact.map((imp, index) => (
                     <li key={index} className="flex items-start gap-2 text-zinc-700 dark:text-zinc-300">
                       <CheckCircleIcon className="size-4 text-emerald-500 shrink-0 mt-0.5" />
                       <span>{imp}</span>
@@ -174,186 +177,74 @@ export function ProjectsSection() {
                 </ul>
               </div>
 
-              {/* Learnings accordion bullet list */}
-              <div className="space-y-2 font-mono text-sm">
-                <span className="text-zinc-500 uppercase text-xs tracking-wider font-semibold block">
-                  Technical Architecture & Key Learnings
-                </span>
-                <ul className="space-y-1.5 text-muted-foreground list-disc pl-4 leading-relaxed">
-                  {project.learnings.map((learn, lIdx) => (
-                    <li key={lIdx}>{learn}</li>
-                  ))}
-                </ul>
-              </div>
-
               {/* Actions */}
               <div className="flex items-center gap-3 pt-2">
                 <Button variant="outline" size="sm" className="rounded-md font-mono text-xs cursor-pointer group" asChild>
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
+                  <a href={activeProject.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
                     <GithubLogoIcon className="size-4" />
                     Source Code
                   </a>
                 </Button>
-                {project.demo !== "#" && (
+                {/* {activeProject.liveUrl && activeProject.liveUrl !== "#" && (
                   <Button variant="ghost" size="sm" className="rounded-md font-mono text-xs text-zinc-400 hover:text-foreground cursor-pointer" asChild>
-                    <a href={project.demo} className="flex items-center gap-1.5">
+                    <a href={activeProject.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
                       Live Demonstration
                       <ArrowSquareOutIcon className="size-4" />
                     </a>
                   </Button>
-                )}
+                )} */}
               </div>
+            </div>
 
+            {/* Right Side: Browser Preview (Column 5 on Desktop) */}
+            <div className="lg:col-span-5 w-full flex flex-col items-center gap-6">
+              <ProjectPreview
+                image={activeProject.homepageScreenshot}
+                liveUrl={activeProject.liveUrl}
+              />
+              
+              {/* Pagination Dots & Navigation Buttons */}
+              <div className="flex items-center gap-4 select-none">
+                <button
+                  onClick={() => setActiveIdx((prev) => (prev === 0 ? projects.length - 1 : prev - 1))}
+                  className="p-1.5 rounded border border-border/40 text-zinc-500 hover:text-foreground hover:border-border bg-card/25 transition-all duration-200 cursor-pointer flex items-center justify-center size-8"
+                  aria-label="Previous project"
+                >
+                  <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {projects.map((_, dotIdx) => (
+                    <button
+                      key={dotIdx}
+                      onClick={() => setActiveIdx(dotIdx)}
+                      className={`size-2 rounded-full transition-colors duration-300 cursor-pointer ${
+                        activeIdx === dotIdx 
+                          ? "bg-emerald-500" 
+                          : "bg-zinc-700 hover:bg-zinc-500"
+                      }`}
+                      aria-label={`Go to project ${dotIdx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setActiveIdx((prev) => (prev === projects.length - 1 ? 0 : prev + 1))}
+                  className="p-1.5 rounded border border-border/40 text-zinc-500 hover:text-foreground hover:border-border bg-card/25 transition-all duration-200 cursor-pointer flex items-center justify-center size-8"
+                  aria-label="Next project"
+                >
+                  <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
           </motion.div>
-        ))}
+        </AnimatePresence>
       </div>
     </section>
-  )
-}
-
-// ----------------- MICRO-WIDGET COMPONENTS -----------------
-
-// Smart Recruiter Widget
-function SmartRecruiterWidget() {
-  return (
-    <div className="w-full border border-border bg-card shadow-lg rounded-lg overflow-hidden font-mono text-xs p-4 flex flex-col gap-3">
-      {/* Title block */}
-      <div className="flex items-center justify-between border-b border-border pb-2.5">
-        <div className="flex items-center gap-2">
-          <CpuIcon className="size-4 text-emerald-500" />
-          <span className="font-semibold text-foreground text-[10px]">AI SCREENING REPORT</span>
-        </div>
-        <span className="text-[9px] text-zinc-500">Candidate #4021</span>
-      </div>
-
-      {/* Score Telemetry */}
-      <div className="space-y-3 bg-zinc-100 dark:bg-zinc-900/40 border border-border/60 rounded p-3 text-sm">
-        <div className="flex justify-between items-center text-xs">
-          <span className="text-muted-foreground">Candidate Name:</span>
-          <span className="text-foreground font-semibold">Alex Rivera</span>
-        </div>
-        <div className="space-y-1.5">
-          <div className="flex justify-between text-[11px] text-muted-foreground">
-            <span>Technical Score</span>
-            <span>92%</span>
-          </div>
-          <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
-            <div className="bg-primary h-full w-[92%]" />
-          </div>
-        </div>
-        <div className="space-y-1.5">
-          <div className="flex justify-between text-[11px] text-muted-foreground">
-            <span>Communication Score</span>
-            <span>85%</span>
-          </div>
-          <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
-            <div className="bg-emerald-500 h-full w-[85%]" />
-          </div>
-        </div>
-        <div className="space-y-1.5">
-          <div className="flex justify-between text-[11px] text-muted-foreground">
-            <span>AI Confidence Score</span>
-            <span>94%</span>
-          </div>
-          <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
-            <div className="bg-amber-500 h-full w-[94%]" />
-          </div>
-        </div>
-      </div>
-
-      {/* AI Summary Readout */}
-      <div className="bg-muted/40 p-2.5 rounded border border-border/40 text-[10px] space-y-1">
-        <span className="text-zinc-500 block uppercase font-semibold text-[8px]">AI Evaluation Summary</span>
-        <p className="text-foreground leading-relaxed">
-          "Candidate explained Redis caching and Postgres indexing questions confidently. Highly recommended for the next round."
-        </p>
-      </div>
-    </div>
-  )
-}
-
-// Legal Assistant Widget
-function LegalAssistantWidget() {
-  return (
-    <div className="w-full border border-border bg-card shadow-lg rounded-lg overflow-hidden font-mono text-xs p-4 flex flex-col gap-3">
-      {/* Title bar */}
-      <div className="flex items-center justify-between border-b border-border pb-2.5">
-        <div className="flex items-center gap-2">
-          <SparkleIcon className="size-4 text-amber-500" />
-          <span className="font-semibold text-foreground text-[10px]">CONTRACT CLAUSE SIMPLIFIER</span>
-        </div>
-        <span className="text-[9px] text-rose-500 font-semibold px-1.5 py-0.5 rounded border border-rose-950/20 dark:border-rose-950 bg-rose-500/5">
-          NDA Draft
-        </span>
-      </div>
-
-      <div className="flex flex-col gap-3">
-        {/* Complex Legalese Box */}
-        <div className="bg-rose-500/10 dark:bg-rose-950/20 border border-rose-500/20 rounded p-2.5">
-          <span className="text-[8px] text-rose-600 dark:text-rose-400 uppercase tracking-wide block mb-1">Raw Legal Text</span>
-          <p className="text-[10px] text-rose-900 dark:text-rose-300 leading-relaxed font-sans">
-            "...either contracting party may, at its sole and absolute discretion, terminate this Agreement upon prior written notice of thirty (30) days..."
-          </p>
-        </div>
-
-        {/* Simplified Box */}
-        <div className="bg-emerald-500/10 dark:bg-emerald-950/20 border border-emerald-500/20 rounded p-2.5">
-          <span className="text-[8px] text-emerald-600 dark:text-emerald-400 uppercase tracking-wide block mb-1">Simplified Explanation</span>
-          <p className="text-[10px] text-emerald-800 dark:text-emerald-300 leading-relaxed font-sans font-semibold">
-            "Either party can end the agreement at any time, but must give a 30-day written notice."
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// Perfect Resume Widget
-function PerfectResumeWidget() {
-  return (
-    <div className="w-full border border-border bg-card shadow-lg rounded-lg overflow-hidden font-mono text-xs p-4 flex flex-col gap-3">
-      {/* Title bar */}
-      <div className="flex items-center justify-between border-b border-border pb-2.5">
-        <div className="flex items-center gap-2">
-          <GithubLogoIcon className="size-4 text-indigo-400" />
-          <span className="font-semibold text-foreground text-[10px]">LINKEDIN RESUME IMPORTER</span>
-        </div>
-        <span className="text-[9px] text-zinc-500">API Sync Active</span>
-      </div>
-
-      {/* Mapping Visualization */}
-      <div className="bg-zinc-100 dark:bg-zinc-900/40 border border-border/60 rounded p-3 flex flex-col gap-2.5">
-        <div className="flex justify-between items-center text-[10px]">
-          <div className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 font-semibold">
-            LinkedIn Profile
-          </div>
-          <span className="text-zinc-400 dark:text-zinc-600">─────►</span>
-          <div className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-semibold">
-            PDF Resume
-          </div>
-        </div>
-
-        <div className="space-y-1.5 text-[10px] text-zinc-600 dark:text-zinc-400">
-          <div className="flex justify-between border-b border-border/20 pb-1">
-            <span>Profile Data (Bio & Title)</span>
-            <span className="text-zinc-950 dark:text-foreground font-semibold">✓ Imported</span>
-          </div>
-          <div className="flex justify-between border-b border-border/20 pb-1">
-            <span>Work History (Roles)</span>
-            <span className="text-zinc-950 dark:text-foreground font-semibold">✓ Auto-Compiled</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Skills & Certificates</span>
-            <span className="text-zinc-950 dark:text-foreground font-semibold">✓ Structured</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded py-2 text-center font-semibold text-[10px]">
-        ✓ Built directly from LinkedIn profile data
-      </div>
-    </div>
   )
 }
