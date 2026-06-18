@@ -101,7 +101,7 @@ export function ProjectsSection() {
                   : "border-border/40 text-muted-foreground hover:border-border hover:text-foreground bg-muted/5"
               }`}
             >
-              <span className={`size-1.5 rounded-full transition-colors duration-300 ${
+              <span className={`size-1.5 shrink-0 rounded-full transition-colors duration-300 ${
                 isActive ? "bg-emerald-500 animate-pulse" : "bg-zinc-600"
               }`} />
               <span>{project.title}</span>
