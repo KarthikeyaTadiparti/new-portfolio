@@ -39,7 +39,7 @@ export function ContactSection() {
   ]
 
   return (
-    <section id="contact" className="py-20 px-6 max-w-7xl mx-auto w-full bg-background relative font-mono">
+    <section id="contact" className="py-20 px-6 max-w-7xl mx-auto w-full bg-background relative font-mono scroll-mt-14 md:scroll-mt-8">
       {/* Background radial gradient */}
       <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
 
