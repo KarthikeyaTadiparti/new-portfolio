@@ -31,12 +31,12 @@ export function ProjectsSection() {
       id: "smart-recruiter",
       title: "Smart Recruiter",
       subtitle: "AI-Powered Voice Interview Platform",
-      tech: ["React.js", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Redis"],
+      tech: ["React.js", "Tailwind CSS", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Redis"],
       problem: "Screening hundreds of candidates takes days, and manual interviews can be slow, expensive, and biased.",
       solution: "Built an AI voice assistant that interviews candidates, records transcripts, and scores skills automatically.",
       impact: [
-        "Reduced recruiter screening time by 70%",
-        "Scaled session caching to Redis with 2ms response times"
+        "Reduced recruiter screening time by approximately 40-60%",
+        "Implemented Redis caching for frequently accessed data, significantly reducing API latency and improving backend scalability"
       ],
       github: "https://github.com/KarthikeyaTadiparti/Smart-Recruiter",
       demo: false,
@@ -49,11 +49,11 @@ export function ProjectsSection() {
       title: "Legal Assistant",
       subtitle: "Custom AI RAG Document Simplifier",
       tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "n8n", "RAG Pipeline"],
-      problem: "Founder contracts and NDAs are full of complicated legal words that are very hard to read and parse.",
-      solution: "Developed an AI helper using n8n and vector databases that reads agreements and explains them in simple English.",
+      problem: "Understanding contracts, agreements, and legal documents can be challenging for users without legal expertise.",
+      solution: "Developed an AI Assistant using n8n and vector databases that reads agreements and explains them in simple English.",
       impact: [
         "Built the entire application in a 24-hour hackathon window",
-        "Helped founders identify contract risks in under 60 seconds"
+        "Implemented a RAG-based knowledge pipeline for intelligent legal document analysis"
       ],
       github: "https://github.com/KarthikeyaTadiparti/Legal-Assistant-n8n",
       demo: false,
@@ -65,18 +65,35 @@ export function ProjectsSection() {
       id: "perfect-resume",
       title: "Perfect Resume",
       subtitle: "Dynamic LinkedIn Profile to PDF CV Builder",
-      tech: ["React.js", "Redux", "Node.js", "Express.js", "MongoDB", "OAuth 2.0"],
+      tech: ["React.js", "Tailwind CSS","Redux", "Node.js", "Express.js", "MongoDB"],
       problem: "Formatting resumes manually is slow, and copying info from LinkedIn is tedious and breaks layouts.",
-      solution: "Created an automated CV compiler that pulls data from LinkedIn profiles via OAuth and creates clean PDFs instantly.",
+      solution: "Created an automated Resume Builder that pulls data from LinkedIn profiles and creates professional resume PDFs instantly.",
       impact: [
-        "Decreased average resume generation time from 1 hour to 30 seconds",
-        "Automated profile sync for consistent professional history data"
+        "Reduced manual resume data entry by 70% through LinkedIn profile auto-population",
+        "Built an end-to-end resume builder with live preview and one-click PDF downloads"
       ],
       github: "https://github.com/KarthikeyaTadiparti/Perfect-Resume",
       demo: true,
       demoLink: "https://perfect-resume-sable.vercel.app/",
       homepageScreenshot: "/perfectresume.png",
       liveUrl: "https://perfectresume.io"
+    },
+    {
+      id: "easy-bookings",
+      title: "Easy Bookings",
+      subtitle: "Rental Property Listing & Booking Platform",
+      tech: ["EJS", "Node.js", "Express.js", "MongoDB", "Bootstrap"],
+      problem: "Traditional rental property listing services can be difficult for hosts to manage securely and for guests to browse responsively.",
+      solution: "Developed a full-stack property listing platform where users can easily list properties, book stays, leave reviews, and interact with hosts.",
+      impact: [
+        "Implemented robust role-based access control (RBAC) to ensure secure host-guest listing interactions",
+        "Built a responsive, server-side rendered UI utilizing EJS templating and Bootstrap styling"
+      ],
+      github: "https://github.com/KarthikeyaTadiparti/Easy-Bookings",
+      demo: true,
+      demoLink: "https://major-project-vx5g.onrender.com/listing",
+      homepageScreenshot: "/easybookings.png",
+      liveUrl: "https://easybooking.com"
     }
   ]
 
@@ -101,12 +118,12 @@ export function ProjectsSection() {
               onClick={() => setActiveIdx(idx)}
               className={`relative px-4 py-2 rounded-lg font-mono text-xs md:text-sm transition-all duration-300 flex items-center gap-2 cursor-pointer border select-none ${
                 isActive 
-                  ? "border-emerald-500 text-foreground bg-emerald-500/5 ]" 
-                  : "border-border/40 text-muted-foreground hover:border-border hover:text-foreground bg-muted/5"
+                  ? "border-foreground text-foreground bg-foreground/5" 
+                  : "border-border text-muted-foreground hover:border-border hover:text-foreground bg-muted/5"
               }`}
             >
               <span className={`size-1.5 shrink-0 rounded-full transition-colors duration-300 ${
-                isActive ? "bg-emerald-500 animate-pulse" : "bg-zinc-600"
+                isActive ? "bg-foreground animate-pulse" : "bg-zinc-600 dark:bg-zinc-400"
               }`} />
               <span>{project.title}</span>
             </button>
@@ -183,7 +200,7 @@ export function ProjectsSection() {
 
               {/* Actions */}
               <div className="flex items-center gap-3 pt-2">
-                <Button variant="outline" size="sm" className="rounded-md font-mono text-xs cursor-pointer group" asChild>
+                <Button variant="outline" size="sm" className="bg-zinc-200/50 rounded-md font-mono text-xs cursor-pointer group" asChild>
                   <a href={activeProject.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
                     <GithubLogoIcon className="size-4" />
                     Source Code
