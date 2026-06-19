@@ -101,6 +101,13 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="py-20 px-6 max-w-7xl mx-auto w-full border-b border-border bg-background relative scroll-mt-26 md:scroll-mt-12 lg:scroll-mt-8">
+      {/* Hidden Preloader to cache screenshots on mount */}
+      <div className="hidden" aria-hidden="true">
+        {projects.map((project) => (
+          <img key={project.id} src={project.homepageScreenshot} alt="" />
+        ))}
+      </div>
+
       {/* Eyebrow and Section Header */}
       <div className="flex flex-col space-y-4 mb-8 text-left max-w-2xl font-mono">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
