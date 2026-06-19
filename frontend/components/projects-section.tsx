@@ -41,7 +41,7 @@ export function ProjectsSection() {
       github: "https://github.com/KarthikeyaTadiparti/Smart-Recruiter",
       demo: false,
       demoLink: "#",
-      homepageScreenshot: "/smart_recruiter.png",
+      homepageScreenshot: "/smart_recruiter.webp",
       liveUrl: "https://smartrecruiter.ai"
     },
     {
@@ -58,7 +58,7 @@ export function ProjectsSection() {
       github: "https://github.com/KarthikeyaTadiparti/Legal-Assistant-n8n",
       demo: false,
       demoLink: "#",
-      homepageScreenshot: "/legalassistant.png",
+      homepageScreenshot: "/legalassistant.webp",
       liveUrl: "https://legalassistant.ai"
     },
     {
@@ -75,7 +75,7 @@ export function ProjectsSection() {
       github: "https://github.com/KarthikeyaTadiparti/Perfect-Resume",
       demo: true,
       demoLink: "https://perfect-resume-sable.vercel.app/",
-      homepageScreenshot: "/perfectresume.png",
+      homepageScreenshot: "/perfectresume.webp",
       liveUrl: "https://perfectresume.io"
     },
     {
@@ -92,7 +92,7 @@ export function ProjectsSection() {
       github: "https://github.com/KarthikeyaTadiparti/Easy-Bookings",
       demo: true,
       demoLink: "https://major-project-vx5g.onrender.com/listing",
-      homepageScreenshot: "/easybookings.png",
+      homepageScreenshot: "/easybookings.webp",
       liveUrl: "https://easybooking.com"
     }
   ]

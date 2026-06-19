@@ -130,7 +130,7 @@ export function HeroSection() {
               className="relative w-full h-full rounded-full overflow-hidden border border-white/15 z-10 bg-zinc-950"
             >
               <img 
-                src="/photo.png" 
+                src="/photo.webp" 
                 alt="Karthikeya Tadiparti"
                 className="w-full h-full object-cover object-center"
               />
