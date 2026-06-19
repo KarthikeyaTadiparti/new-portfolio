@@ -75,7 +75,7 @@ export function ProjectPreview({ image, liveUrl }: ProjectPreviewProps) {
             src={image}
             alt={`${domain} screenshot`}
             loading="lazy"
-            className="w-full h-auto block object-top brightness-100 dark:brightness-90"
+            className="w-full h-auto block object-top brightness-110 dark:brightness-100"
           />
         </div>
       </div>

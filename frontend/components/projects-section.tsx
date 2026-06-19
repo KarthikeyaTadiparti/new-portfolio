@@ -17,7 +17,8 @@ interface ProjectData {
   solution: string
   impact: string[]
   github: string
-  demo: string
+  demo: boolean
+  demoLink: string
   homepageScreenshot: string
   liveUrl: string
 }
@@ -37,8 +38,9 @@ export function ProjectsSection() {
         "Reduced recruiter screening time by 70%",
         "Scaled session caching to Redis with 2ms response times"
       ],
-      github: "https://github.com",
-      demo: "#",
+      github: "https://github.com/KarthikeyaTadiparti/Smart-Recruiter",
+      demo: false,
+      demoLink: "#",
       homepageScreenshot: "/smart_recruiter.png",
       liveUrl: "https://smartrecruiter.ai"
     },
@@ -53,8 +55,9 @@ export function ProjectsSection() {
         "Built the entire application in a 24-hour hackathon window",
         "Helped founders identify contract risks in under 60 seconds"
       ],
-      github: "https://github.com",
-      demo: "#",
+      github: "https://github.com/KarthikeyaTadiparti/Legal-Assistant-n8n",
+      demo: false,
+      demoLink: "#",
       homepageScreenshot: "/legalassistant.png",
       liveUrl: "https://legalassistant.ai"
     },
@@ -69,8 +72,9 @@ export function ProjectsSection() {
         "Decreased average resume generation time from 1 hour to 30 seconds",
         "Automated profile sync for consistent professional history data"
       ],
-      github: "https://github.com",
-      demo: "#",
+      github: "https://github.com/KarthikeyaTadiparti/Perfect-Resume",
+      demo: true,
+      demoLink: "https://perfect-resume-sable.vercel.app/",
       homepageScreenshot: "/perfectresume.png",
       liveUrl: "https://perfectresume.io"
     }
@@ -185,14 +189,14 @@ export function ProjectsSection() {
                     Source Code
                   </a>
                 </Button>
-                {/* {activeProject.liveUrl && activeProject.liveUrl !== "#" && (
+                {activeProject.demo && activeProject.demoLink && (
                   <Button variant="ghost" size="sm" className="rounded-md font-mono text-xs text-zinc-400 hover:text-foreground cursor-pointer" asChild>
-                    <a href={activeProject.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
+                    <a href={activeProject.demoLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
                       Live Demonstration
                       <ArrowSquareOutIcon className="size-4" />
                     </a>
                   </Button>
-                )} */}
+                )}
               </div>
             </div>
 
